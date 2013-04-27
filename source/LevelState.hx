@@ -15,7 +15,6 @@ import org.flixel.FlxText;
 import org.flixel.FlxU;
 import org.flixel.system.input.Mouse;
 
-
 class LevelState extends FlxState
 {
 	
@@ -26,7 +25,7 @@ class LevelState extends FlxState
 	var pred = 0;
 	var pgreen = 0;
 	var pblue = 0;
-	
+
 	override public function create():Void
 	{
 		
@@ -44,9 +43,8 @@ class LevelState extends FlxState
 		
 		FlxG.mouse.show(mpoint,0.01);
 		
-		
-		
-		
+		var enemy:Enemy = new Enemy(100,100);
+		add(enemy);		
 	}
 	
 	override public function destroy():Void
