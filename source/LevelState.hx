@@ -16,7 +16,7 @@ import org.flixel.FlxU;
 import org.flixel.system.input.Mouse;
 
 
-class MenuState extends FlxState
+class LevelState extends FlxState
 {
 	
 	var Player:FlxSprite;
