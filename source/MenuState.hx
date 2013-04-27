@@ -20,6 +20,12 @@ class MenuState extends FlxState
 {
 	
 	var Player:FlxSprite;
+	var addred = 0;
+	var addgreen = 0;
+	var addblue = 0;
+	var pred = 0;
+	var pgreen = 0;
+	var pblue = 0;
 	
 	override public function create():Void
 	{
@@ -34,7 +40,7 @@ class MenuState extends FlxState
 		
 		var mpoint:FlxSprite = new FlxSprite(0,0);
 		mpoint.makeGraphic(1,1);
-		mpoint.alpha=0;
+		//mpoint.alpha=0;
 		
 		FlxG.mouse.show(mpoint,0.01);
 		
@@ -52,11 +58,54 @@ class MenuState extends FlxState
 	{
 		super.update();
 		
-		Player.x=FlxG.mouse.screenX;
-		Player.y=FlxG.mouse.screenY;
 		
+		
+		updateEntities();
+		CheckCollision();
+		UpdatePlayer();
+		
+		CheckState();
 		
 	}	
 	
+	private function UpdatePlayer() {
+		Player.x=FlxG.mouse.screenX;
+		Player.y=FlxG.mouse.screenY;
+		if (addred != 0) {
+			pred=pred+addred;
+			pred=normalize(pred);
+		}
+		if (addgreen != 0) {
+			pgreen=pgreen+addgreen;
+			pgreen=normalize(pgreen);
+		}
+		if (addblue != 0) {
+			pblue=pred+addblue;
+			pblue=normalize(pblue);
+		}
+		addred = addgreen = addblue = 0;
+		
+		Player.color = (pred<<8)*255|(pgreen<<4)*255|pblue;
+		
+		
+	}
+	
+	private function updateEntities() {
+	
+	}
+	
+	private function CheckCollision() {
+	
+	}
+	
+	private function CheckState() {
+	
+	}
+	
+	private function normalize(cvalue:Int):Int {
+		if (cvalue<0) return 0;
+		if (cvalue>255) return 255;
+		return cvalue;
+	}
 	
 }
