@@ -14,17 +14,22 @@ import org.flixel.FlxState;
 import org.flixel.FlxText;
 import org.flixel.FlxU;
 import org.flixel.system.input.Mouse;
+import org.flixel.FlxPoint;
+import org.flixel.plugin.photonstorm.FlxVelocity;
+
 
 class LevelState extends FlxState
 {
 	
 	var Player:FlxSprite;
+	var Enemy:FlxSprite;
 	var addred = 0;
 	var addgreen = 0;
 	var addblue = 0;
 	var pred = 0;
 	var pgreen = 0;
 	var pblue = 0;
+	var PlayerLoc:FlxPoint;
 
 	override public function create():Void
 	{
@@ -43,8 +48,20 @@ class LevelState extends FlxState
 		
 		FlxG.mouse.show(mpoint,0.01);
 		
-		var enemy:Enemy = new Enemy(100,100);
-		add(enemy);		
+		//worked
+		//var enemy:Enemy = new Enemy(100,100,20,20);
+		//add(enemy);
+		var Enemy = new FlxSprite(10,10);
+		Enemy.makeGraphic(30,30);
+		Enemy.color=0xffff0000;
+		add(Enemy);
+		
+		//FlxVelocity.moveTowardsObject(Enemy,Player,100);
+		
+		//var PlayerLoc = new FlxPoint(400,0);
+		//add (PlayerLoc);
+		FlxVelocity.moveTowardsPoint(Enemy,new FlxPoint(400,700),100);
+	
 	}
 	
 	override public function destroy():Void
@@ -59,7 +76,7 @@ class LevelState extends FlxState
 		updateEntities();
 		CheckCollision();
 		UpdatePlayer();
-		
+
 		CheckState();
 		
 	}	
