@@ -7,7 +7,8 @@ class Enemy extends FlxSprite
 {
 	public var EnemyType:Int;
 	public var EnemyColor:String;
-    public function new()
+    
+    override public function new()
     {
  		super();
  		this.makeGraphic(30,30);
@@ -17,15 +18,15 @@ class Enemy extends FlxSprite
  				EnemyColor="Red";
  				this.color=0xffff0000;
  			case 1:
- 				EnemyColor="Blue";
+ 				EnemyColor="Green";
  				this.color=0xff00ff00;
  			case 2:
- 				EnemyColor="Green";
+ 				EnemyColor="Blue";
  				this.color=0xff0000ff;
  		}
         exists = false;
     }
- 
+
     public function launch():Void
     {
         x = Std.int(Math.random() * FlxG.width);
@@ -42,6 +43,18 @@ class Enemy extends FlxSprite
         super.kill();
  
         FlxG.score += 20;
+        trace("Collided with color " + EnemyColor);
+        switch(EnemyType) {
+        	case 0:
+        		trace("More red");
+        		Registry.player.addred=10;
+        	case 1:
+      	 		trace("More green");
+        		Registry.player.addgreen=10;
+        	case 2:
+       			trace("More blue");
+        		Registry.player.addblue=10;
+        }
     }
  
     override public function update():Void

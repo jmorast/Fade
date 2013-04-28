@@ -21,6 +21,7 @@ class EnemyManager extends FlxGroup
         while (i < poolSize) {
             var enemy = new Enemy();
             add(enemy);
+
             i++;
         }
     }
@@ -46,12 +47,14 @@ class EnemyManager extends FlxGroup
             release();
         }
     }
+
  
-    public function bulletHitEnemy(bullet:FlxObject, enemy:FlxObject):Void
+    public function enemyHitPlayer(player:FlxObject, enemy:FlxObject):Void
     {
-        bullet.kill();
- 
-        enemy.hurt(1);
+        enemy.kill();
+
+        //Registry.player.addred=10;
+        //enemy.hurt(1);
  
        // Registry.fx.explodeBlock(Std.int(enemy.x+enemy.width*.5), Std.int(enemy.y+enemy.height));
  

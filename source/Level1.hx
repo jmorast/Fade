@@ -20,6 +20,8 @@ import org.flixel.plugin.photonstorm.FlxVelocity;
 
 class Level1 extends FlxState
 {
+	
+
 
 	override public function create():Void
 	{
@@ -40,9 +42,12 @@ class Level1 extends FlxState
 		Registry.init();
 		add(Registry.player);
 		add(Registry.enemies);
+
+		//makeEnemyInit(100,100);
 	
 	}
 
+	
 	override public function destroy():Void
 	{
 		super.destroy();
@@ -59,8 +64,7 @@ class Level1 extends FlxState
 		CheckState();
 		
 	}	
-	
-	
+
 	private function updateEntities() {
 	  // spawn new enemies if needed
 	  // move enemies based on their velocities
@@ -69,12 +73,14 @@ class Level1 extends FlxState
 	
 	private function CheckCollision() {
 	  // for each enemy in enemy list check if player collides
+	 	//FlxG.overlap(Registry.player, Registry.enemies, Registry.player.playerHitEnemy);
+		FlxG.overlap(Registry.player, Registry.enemies, Registry.enemies.enemyHitPlayer);
+	
 	  // update addred, addgreen, addblue and change enemy behavior
 	}
 	
 	private function CheckState() {
 	  // is the game or level over?
 	}
-	
 
 }
