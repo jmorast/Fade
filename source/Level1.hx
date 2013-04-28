@@ -21,30 +21,21 @@ import org.flixel.plugin.photonstorm.FlxVelocity;
 class Level1 extends FlxState
 {
 	
-
+	private var scoreBoard:FlxText;
 
 	override public function create():Void
 	{
 		FlxG.bgColor = 0xffffffff;	
-		
-		/*
-		Player = new FlxSprite(320,249);
-		Player.makeGraphic(20,20);
-		Player.color=0x000000;
-		add(Player);
-		*/
+
 		var mpoint:FlxSprite = new FlxSprite(0,0);
 		mpoint.makeGraphic(1,1);
-		//mpoint.alpha=0;
 		
 		FlxG.mouse.show(mpoint,0.01);
 		
 		Registry.init();
 		add(Registry.player);
 		add(Registry.enemies);
-
-		//makeEnemyInit(100,100);
-	
+		
 	}
 
 	
@@ -60,7 +51,6 @@ class Level1 extends FlxState
 		updateEntities();
 		CheckCollision();
 		//UpdatePlayer();
-
 		CheckState();
 		
 	}	
@@ -72,11 +62,10 @@ class Level1 extends FlxState
 	}
 	
 	private function CheckCollision() {
-	  // for each enemy in enemy list check if player collides
-	 	//FlxG.overlap(Registry.player, Registry.enemies, Registry.player.playerHitEnemy);
+	 	// for each enemy in enemy list check if player collides
 		FlxG.overlap(Registry.player, Registry.enemies, Registry.enemies.enemyHitPlayer);
 	
-	  // update addred, addgreen, addblue and change enemy behavior
+		// update addred, addgreen, addblue and change enemy behavior
 	}
 	
 	private function CheckState() {

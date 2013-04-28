@@ -2,6 +2,8 @@ package;
  
 import org.flixel.FlxG;
 import org.flixel.FlxSprite;
+import org.flixel.FlxPoint;
+import org.flixel.plugin.photonstorm.FlxVelocity;
  
 class Enemy extends FlxSprite
 {
@@ -29,10 +31,25 @@ class Enemy extends FlxSprite
 
     public function launch():Void
     {
-        x = Std.int(Math.random() * FlxG.width);
-       	y = Std.int(Math.random() * FlxG.height);
-        velocity.x = -50 + Std.int(Math.random() * 100);
-        velocity.y = -50 + Std.int(Math.random() * 100);
+    	// Random starting location
+    	//x = Std.int(Math.random() * FlxG.width);
+    	//y = Std.int(Math.random() * FlxG.height);
+    	// Random starting location 10 away from player
+    	var distFromPlayer:Int = 0;
+    	while (distFromPlayer < 50) {
+    		x = Std.int(Math.random() * FlxG.width);
+    		y = Std.int(Math.random() * FlxG.height);
+    		var dx:Int = Std.int(x - Registry.player.x);
+    		var dy:Int = Std.int(y - Registry.player.y);
+    		distFromPlayer = Std.int(Math.sqrt(dx*dx + dy*dy));       		
+    	}
+        
+    	// Random velocity
+        //velocity.x = -50 + Std.int(Math.random() * 100);
+        //velocity.y = -50 + Std.int(Math.random() * 100);
+        FlxVelocity.moveTowardsObject(this,Registry.player,100);
+        // Fire off at the player
+
 
         health = 4;
         exists = true;
