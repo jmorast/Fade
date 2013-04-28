@@ -5,23 +5,34 @@ import org.flixel.FlxSprite;
  
 class Enemy extends FlxSprite
 {
+	public var EnemyType:Int;
+	public var EnemyColor:String;
     public function new()
     {
-        //super(0, 0, "assets/gfx/space-baddie.png");
  		super();
  		this.makeGraphic(30,30);
-		this.color=0xffff0000;
-
+ 		EnemyType=Std.int(Math.random() * 3);
+ 		switch(EnemyType) {
+ 			case 0:
+ 				EnemyColor="Red";
+ 				this.color=0xffff0000;
+ 			case 1:
+ 				EnemyColor="Blue";
+ 				this.color=0xff00ff00;
+ 			case 2:
+ 				EnemyColor="Green";
+ 				this.color=0xff0000ff;
+ 		}
         exists = false;
     }
  
     public function launch():Void
     {
-        x = 64 + Std.int(Math.random() * (FlxG.width - 128));
-        y = -16;
+        x = Std.int(Math.random() * FlxG.width);
+       	y = Std.int(Math.random() * FlxG.height);
         velocity.x = -50 + Std.int(Math.random() * 100);
-        velocity.y = 100;
- 
+        velocity.y = -50 + Std.int(Math.random() * 100);
+
         health = 4;
         exists = true;
     }
@@ -37,10 +48,23 @@ class Enemy extends FlxSprite
     {
         super.update();
  
-        if (y > FlxG.height)
+        if (y > FlxG.height) 
         {
             exists = false;
         }
+        if (y < 0)
+        {
+        	exists = false;
+        }
+        if (x > FlxG.width)
+        {	
+        	exists = false;
+        }
+        if (x < 0)
+        {	
+        	exists = false;
+        }
+
     }
  
 }
