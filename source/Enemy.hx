@@ -1,32 +1,46 @@
 package;
-
-import org.flixel.FlxGroup;
+ 
+import org.flixel.FlxG;
 import org.flixel.FlxSprite;
-
+ 
 class Enemy extends FlxSprite
 {
-    public var addred:Int = 0;
-    public var addgreen:Int = 0;
-    public var addblue:Int = 0;
-	public var speed:Int = 0;
-	private var block:FlxSprite;
+    public function new()
+    {
+        //super(0, 0, "assets/gfx/space-baddie.png");
+ 		super();
+ 		this.makeGraphic(30,30);
+		this.color=0xffff0000;
 
-	public function new(x:Int,y:Int)
-	{
-		super();
-		this.makeGraphic(50,50,0xffff0000);
-		this.x=x;
-		this.y=y;
-	}
-	
-	override public function destroy():Void
-	{
-		super.destroy();
-	}
-
-	override public function update():Void
-	{
-		super.update();
-	}	
-	
+        exists = false;
+    }
+ 
+    public function launch():Void
+    {
+        x = 64 + Std.int(Math.random() * (FlxG.width - 128));
+        y = -16;
+        velocity.x = -50 + Std.int(Math.random() * 100);
+        velocity.y = 100;
+ 
+        health = 4;
+        exists = true;
+    }
+ 
+    override public function kill():Void
+    {
+        super.kill();
+ 
+        FlxG.score += 20;
+    }
+ 
+    override public function update():Void
+    {
+        super.update();
+ 
+        if (y > FlxG.height)
+        {
+            exists = false;
+        }
+    }
+ 
 }

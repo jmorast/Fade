@@ -16,15 +16,15 @@ import org.flixel.FlxU;
 import org.flixel.system.input.Mouse;
 import org.flixel.FlxPoint;
 import org.flixel.plugin.photonstorm.FlxVelocity;
-import org.flixel.FlxGroup;
-import nme.Lib;
 
 
-class LevelState extends FlxState
+class Level1 extends FlxState
 {
 	
 	var Player:FlxSprite;
 	var Enemy:FlxSprite;
+	var LineHoriz:FlxSprite;
+	var LineVert:FlxSprite;
 	var addred = 0;
 	var addgreen = 0;
 	var addblue = 0;
@@ -51,28 +51,33 @@ class LevelState extends FlxState
 		FlxG.mouse.show(mpoint,0.01);
 		
 
-		createEnemies(100);
+		makeEnemyInit(100,100);
+	
+	}
+
+	private function makeEnemyInit(xpos:Int,ypos:Int):Void {
+		var lineh = new FlxSprite(0,0);
+		lineh.makeGraphic(FlxG.width, FlxG.height, 0x00000000);
+		lineh.drawLine(0, ypos, FlxG.width, ypos, 0xFFFF0000);
+		add(lineh);
+		lineh.velocity.y = 100;
+
+		var linev = new FlxSprite(0,0);
+		linev.makeGraphic(FlxG.width, FlxG.height, 0x00000000);
+		linev.drawLine(xpos, 0, xpos, FlxG.height, 0xFFFF0000);
+		add(linev);
+
+		linev.velocity.x = 10;
 
 		var Enemy = new FlxSprite(10,10);
 		Enemy.makeGraphic(30,30);
 		Enemy.color=0xffff0000;
 		add(Enemy);
-		
-		FlxVelocity.moveTowardsPoint(Enemy,new FlxPoint(Player.x,Player.y),100);
-	
-	}
-	
-	public function createEnemies(numEnemies:Int) {
-		for (i in 0...numEnemies) {
-			trace("enemy creation");
-			var Enemy = new FlxSprite(Std.random(FlxG.width),Std.random(FlxG.height));
-			Enemy.makeGraphic(30,30);
-			Enemy.color=0xffff0000;
-			add(Enemy);
-			FlxVelocity.moveTowardsPoint(Enemy,new FlxPoint(Player.x,Player.y),100);
-		}
 
+		
+		FlxVelocity.moveTowardsPoint(Enemy,new FlxPoint(300,0),100);
 	}
+	
 	override public function destroy():Void
 	{
 		super.destroy();
@@ -87,7 +92,6 @@ class LevelState extends FlxState
 		UpdatePlayer();
 
 		CheckState();
-		trace(Lib.getTimer());
 		
 	}	
 	
