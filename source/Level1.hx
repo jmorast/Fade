@@ -69,6 +69,9 @@ class Level1 extends FlxState
 	}
 	
 	private function CheckState() {
+		if (Registry.player.color==0xffffff) {
+			trace("DONE");
+		}
 	  // is the game or level over?
 	}
 

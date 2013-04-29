@@ -72,14 +72,17 @@ class MenuState extends FlxState
 		if (addred != 0) {
 			pred=pred+addred;
 			pred=normalize(pred);
+			trace("NEW: red:"+pred+" blue:"+pblue+" green:"+pgreen);
 		}
 		if (addgreen != 0) {
 			pgreen=pgreen+addgreen;
 			pgreen=normalize(pgreen);
+			trace("NEW: red:"+pred+" blue:"+pblue+" green:"+pgreen);
 		}
 		if (addblue != 0) {
 			pblue=pred+addblue;
 			pblue=normalize(pblue);
+			trace("NEW: red:"+pred+" blue:"+pblue+" green:"+pgreen);
 		}
 		addred = addgreen = addblue = 0;
 		

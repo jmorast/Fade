@@ -49,29 +49,21 @@
     <OutputPath>.</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|BlackBerry' ">
-    <OutputPath>.</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|Flash' ">
-    <OutputPath>.</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|HTML5' ">
-    <OutputPath>.</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iOS' ">
-    <OutputPath>.</OutputPath>
     <AdditionalArguments>-simulator</AdditionalArguments>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|Linux' ">
-    <OutputPath>.</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|Mac' ">
-    <OutputPath>.</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|webOS' ">
-    <OutputPath>.</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|Windows' ">
-    <OutputPath>.</OutputPath>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Fade.nmml" />
@@ -80,5 +72,11 @@
     <Compile Include="source\MyFlxPreloader.hx" />
     <Compile Include="source\ProjectClass.hx" />
     <Compile Include="assets\HaxeFlixel.svg" />
+    <Compile Include="source\Enemy.hx" />
+    <Compile Include="source\EnemyManager.hx" />
+    <Compile Include="source\Level1.hx" />
+    <Compile Include="source\LevelState.hx" />
+    <Compile Include="source\Player.hx" />
+    <Compile Include="source\Registry.hx" />
   </ItemGroup>
 </Project>
