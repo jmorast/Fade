@@ -21,10 +21,10 @@ class Enemy extends FlxSprite
  		if (Math.random() < 0.5) {
  			dirx = Std.int(Math.random() * 90)+20;
  			ewidth = 300 + Std.int(Math.random()*600);
- 			eheight=20;
+ 			eheight=10 + Std.int(Math.random()*40);
  		} else {
  			diry = Std.int(Math.random() * 90)+20;
- 			ewidth=20;
+ 			ewidth= 10 + Std.int(Math.random()*40);
  			eheight = 300 + Std.int(Math.random()*600);
  		}
  		if (Math.random() < 0.5) {
@@ -130,14 +130,17 @@ class Enemy extends FlxSprite
         if (y < 0-eheight)
         {
         	exists = false;
+        	
         }
         if (x > FlxG.width+ewidth)
         {	
         	exists = false;
+        	
         }
         if (x < 0-ewidth)
         {	
         	exists = false;
+        	
         }
 
     }

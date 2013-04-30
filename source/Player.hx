@@ -55,9 +55,9 @@ class Player extends FlxSprite
     private function jitter():Int {
     	var temp:Int = Std.int((Math.abs(pred-pgreen)+Math.abs(pred-pblue)+Math.abs(pgreen-pblue))/100);
     	if (Math.random() < 0.5) {
-    		return Std.int(Math.random()*temp);
+    		return Std.int(Math.random()*temp*2);
     	} else {
-    		return -Std.int(Math.random()*temp);
+    		return -Std.int(Math.random()*temp*2);
     	}
     }
 

@@ -20,8 +20,16 @@ import org.flixel.plugin.photonstorm.FlxVelocity;
 
 class Level1 extends FlxState
 {
-	
+	/// NOTE -> MIKE... i was messing around with having MenuState be the load screen
+	// still ain't working yet.
+
+	// soooon
+	//
+	// off to take liam to maker works... see you in a bit.
 	private var scoreBoard:FlxText;
+	private var successMsg:FlxText;
+	private var level1:Int=1;
+	private var msgalpha:Int=0;
 
 	override public function create():Void
 	{
@@ -35,6 +43,13 @@ class Level1 extends FlxState
 		Registry.init();
 		add(Registry.player);
 		add(Registry.enemies);
+		
+		successMsg = new FlxText(0,250,600,"SUCCESS");
+		successMsg.setFormat("assets/Adore64",9,0x000000,"center");
+		successMsg.alpha=0;
+		add(successMsg);
+		
+		
 		
 	}
 
@@ -69,8 +84,15 @@ class Level1 extends FlxState
 	}
 	
 	private function CheckState() {
+		
 		if (Registry.player.color==0xffffff) {
-			trace("DONE");
+			Registry.enemies.setPool(0);
+			Registry.player.exists=false;
+			successMsg.alpha = (msgalpha++)/255;
+			if (msgalpha==255) { msgalpha=254; }
+			
+			
+			
 		}
 	  // is the game or level over?
 	}

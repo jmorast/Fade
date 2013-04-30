@@ -9,14 +9,21 @@ class EnemyManager extends FlxGroup
 {
     private var lastReleased:Int;
     private var releaseRate:Int;
+ 	private var poolSize:Int;
+ 	private var enemyCount:Int=0;
  
     public function new()
     {
         super();
+ 		startLevel();
+        
+    }
+    
+    
+    private function startLevel() {
+    	releaseRate = 500;
  
-        releaseRate = 500;
- 
-        var poolSize = 100;
+        poolSize = 100;
         var i = 0;
         while (i < poolSize) {
             var enemy = new Enemy();
@@ -24,7 +31,17 @@ class EnemyManager extends FlxGroup
 
             i++;
         }
+    
     }
+    
+ 
+ 	public function setPool(size:Int) {
+ 		poolSize = size;
+ 	}
+ 	
+ 	public function setReleaseRate(rate:Int) {
+ 		releaseRate = rate;
+ 	}
  
     public function release():Void
     {
@@ -33,13 +50,34 @@ class EnemyManager extends FlxGroup
         if (enemy!=null)
         {
             enemy.launch();
+            enemyCount++;
+            
         }
     }
  
     override public function update():Void
     {
         super.update();
+ 		
  
+ 		
+ 		
+ 		if (enemyCount==0 && Registry.player.exists==false) {
+ 			//trace("done");
+ 			/*Registry.level += 1;
+ 			poolSize = 100 + Registry.level*20;
+ 			releaseRate = 500 + 50*Registry.level;
+ 			Registry.player.exists=true;
+ 			Registry.player.color=0x000000;
+ 			startLevel();
+ 			*/
+ 		}
+ 		
+ 		if (this.countLiving()>=poolSize) {
+ 			return;
+ 		}
+ 		
+ 		
         if (Lib.getTimer() > lastReleased + releaseRate)
         {
             lastReleased = Lib.getTimer();
@@ -52,6 +90,8 @@ class EnemyManager extends FlxGroup
     public function enemyHitPlayer(player:FlxObject, enemy:FlxObject):Void
     {
         enemy.kill();
+        enemyCount--;
+        
 
         //Registry.player.addred=10;
         //enemy.hurt(1);
