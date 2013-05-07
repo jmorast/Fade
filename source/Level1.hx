@@ -43,6 +43,7 @@ class Level1 extends FlxState
 		Registry.init();
 		add(Registry.player);
 		add(Registry.enemies);
+		add(Registry.fx);
 		
 		successMsg = new FlxText(0,250,600,"SUCCESS");
 		successMsg.setFormat("assets/Adore64",9,0x000000,"center");

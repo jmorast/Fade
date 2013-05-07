@@ -97,6 +97,7 @@ class EnemyManager extends FlxGroup
         //enemy.hurt(1);
  
         //Registry.fx.explodeBlock(Std.int(enemy.x+enemy.width*.5), Std.int(enemy.y+enemy.height));
+        Registry.fx.explodeBlock(Std.int(player.x),Std.int(player.y));
  
         FlxG.score += 1;
     }

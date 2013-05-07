@@ -12,6 +12,7 @@ class Registry
  	public static var player:Player;
  	public static var level:Int;
  	public static var woffset:Int;
+	public static var fx:Fx;
  	
  	
     //Setup the Registry Objects to create your instances
@@ -23,6 +24,7 @@ class Registry
         player = new Player();
         level = 1;
         woffset = 60;
+	fx = new Fx();
     }
  
 }
