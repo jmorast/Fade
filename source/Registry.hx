@@ -11,6 +11,9 @@ class Registry
     public static var enemies:EnemyManager;
  	public static var player:Player;
  	public static var level:Int;
+ 	public static var woffset:Int;
+ 	
+ 	
     //Setup the Registry Objects to create your instances
     public static function init()
     {
@@ -19,6 +22,7 @@ class Registry
         enemies = new EnemyManager();
         player = new Player();
         level = 1;
+        woffset = 60;
     }
  
 }

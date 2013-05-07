@@ -49,6 +49,10 @@ class Level1 extends FlxState
 		successMsg.alpha=0;
 		add(successMsg);
 		
+		// create status area
+		// need colored box, player limitation
+		// registry.woffset has width of status box
+		
 		
 		
 	}
